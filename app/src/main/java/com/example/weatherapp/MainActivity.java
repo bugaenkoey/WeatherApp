@@ -7,17 +7,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    String msg ="";
-
+    String msg = "";
+    Boolean dark = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
+     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,64 +38,90 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_location: {
                 msg = "action_locations";
-                AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
-                aboutDialog.setTitle("Выбрать локацию");
-                aboutDialog.setMessage("Выбираем населенный пункт");
-                aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                AlertDialog locationsDialog = new AlertDialog.Builder(MainActivity.this).create();
+                locationsDialog.setTitle("Выбрать локацию");
+                locationsDialog.setMessage("Выбираем населенный пункт");
+                locationsDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         });
-                aboutDialog.show();
+                locationsDialog.show();
+            }
+            break;
+            case R.id.action_theme_dark: {
+         //       msg = "theme_dark";
+                final AlertDialog themeDialog = new AlertDialog.Builder(MainActivity.this).create();
+                themeDialog.setTitle("Выбор темной темы");
+                themeDialog.setMessage("Пустрь будет темная тема");
+                //  aboutDialog.set
+                View vdark =getLayoutInflater().inflate(R.layout.theme_checkbox,null);
+                themeDialog.setView(vdark);
+
+                themeDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                        new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                themeDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Cancel",
+                        new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+
+                themeDialog.create();
+//                AlertDialog alert = themeDialog.create();
+//                alert.setCanceledOnTouchOutside(false);
+//                alert.show();
+                themeDialog.show();
+
+
             }
             break;
             case R.id.action_format_Temperaturi: {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                alertDialog.setTitle("Формат температуры");
-                String[] items = {"Фаренгейт","Цельсий"};
-                int checkedItem = 1;
-                alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+                AlertDialog.Builder temperatureDialog = new AlertDialog.Builder(MainActivity.this);
+                temperatureDialog.setTitle("Формат температуры");
+               String[] items = {"Фаренгейт","Цельсий"};
+
+                int checkedItem = 0;
+                temperatureDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-//                                Toast.makeText(MainActivity.this, "Фаренгейт", Toast.LENGTH_LONG).show();
                                 msg ="Фаренгейт";
-
                                 break;
-                            case 1:
-                                //                               Toast.makeText(MainActivity.this, "Цельсий", Toast.LENGTH_LONG).show();
-                                msg ="Цельсий";
 
+                            case 1:
+                                msg ="Цельсий";
                                 break;
 
                         }
-                        dialog.dismiss();
+//                        dialog.dismiss();
                     }
 
                 });
-                AlertDialog alert = alertDialog.create();
+                temperatureDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                temperatureDialog.setNeutralButton("Cancel",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = temperatureDialog.create();
                 alert.setCanceledOnTouchOutside(false);
                 alert.show();
             }
             break;
-            case R.id.action_theme_dark: {
-                msg = "theme_dark";
-                AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
-                aboutDialog.setTitle("Выбор темной темы");
-                aboutDialog.setMessage("Пустрь будет темная тема");
-                aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
 
-                aboutDialog.show();
-
-            }
-            break;
             case R.id.action_author: {
                 msg = "author";
                 AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -113,9 +140,22 @@ public class MainActivity extends AppCompatActivity {
             default:
 
         }
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+                if (checked) {
+                    msg="Dark on";
+                    Toast.makeText(this, "Cheese me", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    msg = "Ligt";
+                    Toast.makeText(this, "I'm lactose intolerant", Toast.LENGTH_SHORT).show();
+                }
     }
 }
