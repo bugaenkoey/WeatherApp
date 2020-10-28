@@ -11,8 +11,12 @@
         <string name="hello_first_fragment">Hello first fragment</string>
         <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-        <string name="action_location">Изменить Локацию</string>
-        <string name="action_theme_dark">Темная тема</string>
+    <string name="action_location">Изменить Локацию</string>
+    <string name="action_location_hint">Херсон</string>
+    <string name="action_location_text">Херсон</string>
+
+
+    <string name="action_theme_dark">Темная тема</string>
         <string name="action_format_Temperaturi">формат температуры</string>
         <string name="action_author">Автор</string>
 
