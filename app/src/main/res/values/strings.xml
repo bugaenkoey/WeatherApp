@@ -1,23 +1,24 @@
 <resources>
     <string name="app_name">WeatherApp</string>
 
-        <string name="action_settings">Настройки</string>
-        <!-- Strings used for fragments for navigation -->
-        <string name="first_fragment_label">First Fragment</string>
-        <string name="second_fragment_label">Second Fragment</string>
-        <string name="next">Next</string>
-        <string name="previous">Previous</string>
+    <string name="action_settings">Настройки</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
-        <string name="hello_first_fragment">Hello first fragment</string>
-        <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="action_location">Изменить Локацию</string>
     <string name="action_location_hint">Херсон</string>
     <string name="action_location_text">Херсон</string>
 
-
+    <string name="action_dark_toggle_off">Light</string>
+    <string name="action_dark_toggle_on">Dark</string>
     <string name="action_theme_dark">Темная тема</string>
-        <string name="action_format_Temperaturi">формат температуры</string>
-        <string name="action_author">Автор</string>
+    <string name="action_format_Temperaturi">формат температуры</string>
+    <string name="action_author">Автор</string>
 
 </resources>

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-  <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-
-<CheckBox
-    android:id="@+id/theme"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:onClick="onCheckboxClicked"
-    android:text="@string/action_theme_dark">
-
-</CheckBox>
-    <ToggleButton
-        android:id="@+id/toggle_Dark"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOff="Light"
-        android:textOn="Dark"
-        android:onClick="toggleDark"
-        />
-  </LinearLayout>
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/theme"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:onClick="onCheckboxClicked"-->
+<!--            android:text="@string/action_theme_dark">-->
+
+<!--        </CheckBox>-->
+
+        <ToggleButton
+            android:id="@+id/toggle_Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toggleDark"
+            android:textOff="@string/action_dark_toggle_off"
+            android:textOn="@string/action_dark_toggle_on" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
