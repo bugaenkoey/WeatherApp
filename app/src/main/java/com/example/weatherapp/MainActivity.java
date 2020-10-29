@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     String msg = "";
     Boolean dark = true;
     EditText editText;
+    Switch aSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +48,11 @@ public class MainActivity extends AppCompatActivity {
             }
             break;
             case R.id.action_theme_dark: {
-                themeDark();
+                switchDark();
             }
             break;
             case R.id.action_format_Temperaturi: {
                 formatTemperaturi();
-
             }
             break;
 
@@ -97,23 +97,20 @@ public class MainActivity extends AppCompatActivity {
         locationsDialog.show();
     }
 
-    private void themeDark() {
+    private void switchDark() {
         //       msg = "theme_dark";
-        CheckBox checkBox;
         final AlertDialog themeDialog = new AlertDialog.Builder(MainActivity.this).create();
-        themeDialog.setTitle("Выбор темной темы");
-        themeDialog.setMessage("Пустрь будет темная тема");
-        //  aboutDialog.set
-        View vdark = getLayoutInflater().inflate(R.layout.theme_checkbox, null);
-        themeDialog.setView(vdark);
-        //checkBox = themeDialog.findViewById(R.menu.menu_setting., null);
-//        String string = themeDialog.findViewById(R.id.action_theme_dark).toString();
-//        Toast.makeText(MainActivity.this, "action_theme_dark "+string, Toast.LENGTH_SHORT).show();
+        //   themeDialog.setTitle("Выбор темы");
+        //   themeDialog.setMessage("");
+        themeDialog.setView(getLayoutInflater().inflate(R.layout.switch_dark, null));
         themeDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        aSwitch = themeDialog.findViewById(R.id.switch_Dark);
+                        dark = aSwitch.isChecked();//Состояние switch_Dark вкл выкл
+                        msg = dark ? "Select Dark" : "Select No dark";
 
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -122,11 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-
         themeDialog.create();
-//                AlertDialog alert = themeDialog.create();
-//                alert.setCanceledOnTouchOutside(false);
-//                alert.show();
         themeDialog.show();
     }
 
@@ -143,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         msg = "Фаренгейт";
                         break;
-
                     case 1:
                         msg = "Цельсий";
                         break;
@@ -182,29 +174,7 @@ public class MainActivity extends AppCompatActivity {
         aboutDialog.show();
     }
 
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-
-        if (checked) {
-            msg = "Dark on";
-            Toast.makeText(this, "Dark on", Toast.LENGTH_SHORT).show();
-
-        } else {
-            msg = "Ligt";
-            Toast.makeText(this, "Ligt", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void toggleDark(View view) {
-        boolean checked = ((ToggleButton) view).isChecked();
-
-        if (checked) {
-            msg = "Dark on";
-            Toast.makeText(this, "Dark on", Toast.LENGTH_SHORT).show();
-
-        } else {
-            msg = "Ligt";
-            Toast.makeText(this, "Ligt", Toast.LENGTH_SHORT).show();
-        }
+    public boolean switchDark(View view) {
+        return view.isClickable();
     }
 }

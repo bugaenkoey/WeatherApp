@@ -15,7 +15,6 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_theme_dark"
-        android:checkable="true"
         android:orderInCategory="110"
         android:title="@string/action_theme_dark"
         app:showAsAction="never" />
